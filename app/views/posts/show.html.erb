@@ -23,8 +23,7 @@
      <td><%= comment.commenter %></td>
      <td><%= comment.body %></td>
      <td><%= Time.now %></td>
-     <td><%= link_to 'Edit Comment', [comment.post, comment],
-                     :method => :edit %></td>
+     <td><%= link_to 'Edit Comment', edit_post_comment_path(comment.post, comment)%></td>
      <td><%= link_to 'Destroy Comment', [comment.post, comment],
                  :confirm => 'Are you sure?',
                  :method => :delete %></td>
