@@ -1,0 +1,56 @@
+<p id="notice" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+   xmlns="http://www.w3.org/1999/html"><%= notice %></p>
+
+<div style="text-align:center">
+
+  <h3><b><%= @post.title %></b></h3>
+</div>
+
+<p>
+  <b><%= @post.content %></b>
+</p>
+
+<br><h4>Comments</h4>
+
+<table class="table table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Comment</th>
+    <th>Time</th>
+  </tr>
+<% @post.comments.each do |comment| %>
+   <tr>
+     <td><%= comment.commenter %></td>
+     <td><%= comment.body %></td>
+     <td><%= Time.now %></td>
+     <td><%= link_to 'Edit Comment', [comment.post, comment],
+                     :method => :edit %></td>
+     <td><%= link_to 'Destroy Comment', [comment.post, comment],
+                 :confirm => 'Are you sure?',
+                 :method => :delete %></td>
+   </tr>
+<% end %>
+</table>
+</br>
+
+
+<br><h4>Add A Comment</h4>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+  <div class="field">
+    <%= f.label :commenter %>
+    <%= f.text_field :commenter %>
+  </div>
+  <div class="field">
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<br/>
+
+<div style="text-align:center">
+<%= link_to 'Back to Posts', posts_path %>
+</div>
